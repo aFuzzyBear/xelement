@@ -1,6 +1,7 @@
 ---
 import XElement from 'astro-xelement'
-const {...attrs} = Astro.props
+import {Markdown} from 'astro/components'
+const {source,...attrs} = Astro.props
 const {Article} = XElement
 const obeservations = (element)=>{
     const headings = [...element.querySelectorAll('h1, h2, h3, h4, h5, h6')]
@@ -28,5 +29,5 @@ const obeservations = (element)=>{
 <Article {...attrs}
     @do={obeservations}
 >
-    <slot/>
+    <Markdown content={source}/>
 </Article>

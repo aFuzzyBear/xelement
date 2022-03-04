@@ -10,12 +10,11 @@ const {
             page_title,
             page_description,
             astro:{
-                headers,html
+                headers,html,source
             }
         }
     }
 }=Astro.props
-
 ---
 <BaseLayout 
     PageMeta={{page_title,page_description}}
@@ -24,7 +23,7 @@ const {
         <div class="leftsidebar">
             <LeftSideBar menu={menu} dir={directory}/>
         </div>
-        <Article class="main" set:html={html}/>
+        <Article class="main" source={source}/>
         <div class="rightbar">
             <RightSideBar headers={headers}/>
         </div>
