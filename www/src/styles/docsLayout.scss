@@ -1,0 +1,73 @@
+/**
+    Documentation Layout Stylesheet
+*/
+
+.container {
+    height: 100%;
+    display: grid; 
+    grid-template-columns: 12em 76em 12em; 
+    grid-template-rows: 1fr; 
+    gap: 0px 1em; 
+    grid-template-areas: 
+      "leftbar main rightbar"; 
+  }
+  .leftbar { grid-area: leftbar; }
+  .main { grid-area: main; }
+  .rightbar { grid-area: rightbar; }
+
+main.layout{
+    @apply flex flex-row flex-wrap md:flex-nowrap items-start content-center justify-between w-full gap-2 pl-8;
+}
+.documentation{
+    @apply w-max
+}
+.footer{
+
+}
+
+/**
+    ***Sticky Right Sidebar***
+*/
+
+.sticky-head {
+    position:sticky;
+    top: 0;
+    @apply bg-[color:var(--theme-bg-color)]
+}
+.sticky-rightbar {
+    position:sticky;
+    top:22%;
+    padding-right: 1em;
+}
+
+.sticky-leftbar {
+    position:sticky;
+    top:22%;
+}
+
+.heading__icon {
+    margin-right: 0.25em;
+ }
+
+ .edit-on-github {
+     border-top: 2px solid;
+     padding-top: 0.5em;
+ }
+//  GitHub comments
+.comments {
+    padding: 2em;
+    background-color:rgb(97, 197, 97);
+    max-width: 80%;
+    margin: 0 auto;
+    border-radius: 2em;
+}
+
+footer {
+   margin-top: 2em;
+}
+
+.howwedo {
+    width: 80%;
+    margin: 0 auto;
+    border-top: 2px solid black;
+}

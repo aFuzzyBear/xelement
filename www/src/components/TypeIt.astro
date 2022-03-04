@@ -1,0 +1,20 @@
+---
+  import XElement from 'astro-xelement'
+  const {...attrs} = Astro.props
+  const {p:TypeItText} = XElement
+---
+
+<TypeItText 
+    {...attrs}
+    @do={()=> 
+    new TypeIt(this,{
+            lifeLike:true,
+            waitUntilVisible:true,
+            afterComplete:(step)=>{
+            step.destroy();
+        }
+        })
+        .go()
+    }
+><slot/></TypeItText><script type="module" src="https://unpkg.com/typeit@8.1.0/dist/index.umd.js" hoist></script>
+

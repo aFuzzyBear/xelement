@@ -1,0 +1,12 @@
+---
+import BaseLayout from './BaseLayout.astro'
+import NestedGrid from '../components/Grid/NestedGrid.astro'
+const {content:{directory="",menu}}=Astro.props
+---
+    <BaseLayout>
+        <h1>
+         Index Page {Astro.request.url.pathname}
+        </h1>
+        <slot/>
+        <NestedGrid dir={directory} items={menu}/>
+    </BaseLayout>

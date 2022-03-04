@@ -1,0 +1,28 @@
+---
+export interface Props{
+    list:any,
+    navbarClassList:string
+    linkClassList:string
+}
+import XElement from 'astro-xelement'
+import PreFetchLink from './PreFetchLink.astro'
+
+const handleError = (error) => new ReferenceError(`
+❗ There seems to be an Error emerging from the <Navbar> Element.
+Here are is the error message:
+${error}
+`)
+
+const {list,navbarClassList,linkClassList} = Astro.props
+---
+    <XElement @is='nav' class={navbarClassList ?? null}>
+        {list.map(item=>{
+               return <PreFetchLink
+                        classList={linkClassList ?? null}
+                        text={item.text ?? handleError("PreFetchLink Prop: 'text', is missing")}
+                        path={item.path ?? handleError("PreFetchLink Prop: 'path', is missing")}
+                        target={item?.target}
+                    />
+        })}     
+    </XElement>
+ 

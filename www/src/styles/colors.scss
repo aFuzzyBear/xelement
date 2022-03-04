@@ -1,0 +1,233 @@
+// im back
+
+:root{
+    //Theme Colors
+    --base-color-snow: hsl(0, 100%, 99%);
+    --base-color-darkVanilla: #d1bea8;
+    --base-color-lightTan:hsl(33, 44%, 76%);
+    --base-color-light-tan:hsl(33, 44%, 86%);
+    --base-color-slate:hsl(222, 47%, 11%);
+    --base-color-light-greyish-blue:hsl(240, 5%, 84%);
+    --base-color-dark-greyish-blue:hsl(240, 5%, 34%);
+    --base-color-darker-greyish-blue:hsl(240, 5%, 24%);
+    --base-color-light-purple:hsl(259, 40%, 84%);
+    --base-color-purple:hsl(259, 40%, 40%);
+    --base-color-dark-purple:hsl(259, 40%, 24%);
+    --base-color-chocolate:hsl(32, 32%, 17%);
+    --base-color-dark-chocolate:hsl(2, 35%, 20%);
+
+}
+/**
+    Light Theme Colours
+*/
+:root{
+    color-scheme: light;
+    color:var(--base-color-dark-purple);
+    //Theme Colors
+    --theme-text-color: var(--base-color-dark-greyish-blue);
+    --theme-bg-color: var(--base-color-snow);
+
+    //TailwindCSS Typography Color Scheme
+    --tailwind-bg-code:hsla(259, 40%, 84%,0.5) ;
+    --tailwind-bg-pre:var(--base-color-light-purple) ;
+    --tailwind-body-text: var(--theme-primary-text-color);
+    --tailwind-bold-text: var(--base-color-dark-purple);
+    --tailwind-borders-code: var(--base-color-dark-purple) ;
+    --tailwind-borders-pre: var(--base-color-dark-purple);
+    --tailwind-borders-quote: var(--base-color-dark-purple);
+    --tailwind-borders-td: var(--base-color-dark-purple);
+    --tailwind-borders-th: var(--base-color-dark-purple);
+    --tailwind-bullets: var(--base-color-dark-purple);
+    --tailwind-code-text: var(--base-color-dark-purple);
+    --tailwind-counters: var(--base-color-dark-purple);
+    --tailwind-headings-text:var(--base-color-dark-purple) ;
+    --tailwind-hr:var(--base-color-dark-purple) ;
+    --tailwind-links-text:rgb(97, 197, 97);
+    --tailwind-pre-text:var(--base-color-purple) ;
+    --tailwind-quotes: var(--base-color-purple) ;
+    --tailwind-theme-captions: var(--base-color-purple) ;
+    //Prism syntax highlighting
+    --prism-bg: ;
+    --prism-base: ;
+    --prism-comment: ;
+    --prism-block-comment: ;
+    --prism-prolog: ;
+    --prism-doctype: ;
+    --prism-cdata: ;
+    --prism-punctuation: ;
+    --prism-tag: ;
+    --prism-attr-name: ;
+    --prism-namespace: ;
+    --prism-deleted: ;
+    --prism-function-name: ;
+    --prism-boolean: ;
+    --prism-number: ;
+    --prism-function: ;
+    --prism-property: ;
+    --prism-class-name: ;
+    --prism-constant: ;
+    --prism-symbol: ;
+    --prism-selector: ;
+    --prism-important: ;
+    --prism-atrule: ;
+    --prism-keyword: ;
+    --prism-builtin: ;
+    --prism-string: ;
+    --prism-char: ;
+    --prism-attr-value: ;
+    --prism-regex: ;
+    --prism-variable: ;
+    --prism-operator: ;
+    --prism-entity: ;
+    --prism-url: ;
+    --prism-important: ;
+    --prism-inserted: ;
+}
+
+/**
+    Warm Theme Colours
+*/
+:root.warm{
+    color-scheme: light;
+    color: var(--base-color-dark-chocolate);
+    // --theme-bg-color:var(--base-color-darkVanilla);
+    --theme-bg-color:var(--base-color-light-tan);
+    //Text Colors
+    --tailwind-bg-code: #ddc5a7 ;
+    --tailwind-bg-pre:#ddc5a7 ;
+    --tailwind-body-text: var(--base-color-chocolate);
+    --tailwind-bold-text:var(--base-color-dark-chocolate) ;
+    --tailwind-borders-code: var(--base-color-dark-chocolate);
+    --tailwind-borders-pre:var(--base-color-dark-chocolate) ;
+    --tailwind-borders-quote: var(--base-color-dark-chocolate);
+    --tailwind-borders-td:var(--base-color-dark-chocolate) ;
+    --tailwind-borders-th: var(--base-color-dark-chocolate);
+    --tailwind-bullets:var(--base-color-dark-chocolate) ;
+    --tailwind-code-text:var(--base-color-dark-chocolate) ;
+    --tailwind-counters: var(--base-color-dark-chocolate);
+    --tailwind-headings-text: var(--base-color-dark-chocolate);
+    --tailwind-hr:var(--base-color-dark-chocolate) ;
+    --tailwind-links-text:rgb(49, 160, 49) ;
+    --tailwind-pre-text:var(--base-color-dark-chocolate) ;
+    --tailwind-quotes:var(--base-color-dark-chocolate) ;
+    --tailwind-theme-captions:var(--base-color-chocolate);
+
+    //Prism syntax highlighting
+    --prism-bg: ;
+    --prism-base: ;
+    --prism-comment: ;
+    --prism-block-comment: ;
+    --prism-prolog: ;
+    --prism-doctype: ;
+    --prism-cdata: ;
+    --prism-punctuation: ;
+    --prism-tag: ;
+    --prism-attr-name: ;
+    --prism-namespace: ;
+    --prism-deleted: ;
+    --prism-function-name: ;
+    --prism-boolean: ;
+    --prism-number: ;
+    --prism-function: ;
+    --prism-property: ;
+    --prism-class-name: ;
+    --prism-constant: ;
+    --prism-symbol: ;
+    --prism-selector: ;
+    --prism-important: ;
+    --prism-atrule: ;
+    --prism-keyword: ;
+    --prism-builtin: ;
+    --prism-string: ;
+    --prism-char: ;
+    --prism-attr-value: ;
+    --prism-regex: ;
+    --prism-variable: ;
+    --prism-operator: ;
+    --prism-entity: ;
+    --prism-url: ;
+    --prism-important: ;
+    --prism-inserted: ;
+    
+}
+
+:root.dark{
+    color-scheme: dark;
+    color:var(--base-color-light-purple);
+    --theme-bg-color:var(--base-color-slate);
+    --tailwind-bg-code: hsla(259, 40%, 40%,0.75);
+    --tailwind-bg-pre: var(--base-color-purple);
+    --tailwind-body-text: var(--base-snow);
+    --tailwind-bold-text: hsl(240, 100%, 99%) ;
+    --tailwind-borders-code: var(--base-color-dark-purple);
+    --tailwind-borders-pre: var(--base-color-dark-purple);
+    --tailwind-borders-quote: var(--base-color-dark-purple);
+    --tailwind-borders-td: var(--base-color-dark-purple);
+    --tailwind-borders-th: var(--base-color-dark-purple);
+    --tailwind-bullets: var(--base-color-dark-purple);
+    --tailwind-code-text: var(--base-color-light-purple);
+    --tailwind-counters: var(--base-color-dark-purple);
+    --tailwind-headings-text: var(--base-color-light-purple) ;
+    --tailwind-hr: var(--base-color-dark-purple) ;
+    --tailwind-links-text: rgb(119, 246, 119) ;
+    --tailwind-links-decorator: rgb(119, 246, 119) ;
+    --tailwind-pre-text: var(--base-snow) ;
+    --tailwind-quotes: var(--base-color-dark-purple);
+    --tailwind-captions: var(--base-color-light-purple);
+
+    --tailwind-invert-bg-code: green;
+    --tailwind-invert-bg-pre: green;
+    --tailwind-invert-body-text: green;
+    --tailwind-invert-bold-text: green;
+    --tailwind-invert-borders-code:green ;
+    --tailwind-invert-borders-pre:green ;
+    --tailwind-invert-borders-quote:green ;
+    --tailwind-invert-borders-td: green;
+    --tailwind-invert-borders-th:green ;
+    --tailwind-invert-bullets: green;
+    --tailwind-invert-code-text:green ;
+    --tailwind-invert-counters: green;
+    --tailwind-invert-headings-text: green;
+    --tailwind-invert-hr: green;
+    --tailwind-invert-links-text: green;
+    --tailwind-invert-pre-text: green;
+    --tailwind-invert-quotes: green;
+    --tailwind-invert-theme-captions: green;
+    //Prism syntax highlighting
+    --prism-bg: hsla(259, 40%, 40%,0.75);
+    --prism-base: var(--base-snow) ;
+    --prism-comment: ;
+    --prism-block-comment: ;
+    --prism-prolog: ;
+    --prism-doctype: ;
+    --prism-cdata: ;
+    --prism-punctuation: ;
+    --prism-tag: ;
+    --prism-attr-name: ;
+    --prism-namespace: ;
+    --prism-deleted: ;
+    --prism-function-name: ;
+    --prism-boolean: ;
+    --prism-number: ;
+    --prism-function: ;
+    --prism-property: ;
+    --prism-class-name: ;
+    --prism-constant: ;
+    --prism-symbol: ;
+    --prism-selector: ;
+    --prism-important: ;
+    --prism-atrule: ;
+    --prism-keyword: ;
+    --prism-builtin: ;
+    --prism-string: ;
+    --prism-char: ;
+    --prism-attr-value: ;
+    --prism-regex: ;
+    --prism-variable: ;
+    --prism-operator: ;
+    --prism-entity: ;
+    --prism-url: ;
+    --prism-important: ;
+    --prism-inserted: ;
+    
+}

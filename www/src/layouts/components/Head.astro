@@ -1,0 +1,19 @@
+---
+import {SEO} from 'astro-seo'
+import Font from 'astro-fonts'
+const {meta,styles=[]}=Astro.props
+const stylesheets = [
+    {
+        href:'/styles/main.scss',
+        media:'screen'
+    },...styles
+]
+---
+   <SEO  
+      title={meta?.page_title} 
+      description={meta?.page_description}   
+   />
+   <!-- <SocialImage/>  -->
+    <!-- <Stylesheet list={stylesheets}/>     -->
+    <!-- <Font family="Roboto" />
+    <Font family="Comforter" /> -->

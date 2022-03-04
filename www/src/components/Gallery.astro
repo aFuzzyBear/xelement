@@ -1,0 +1,24 @@
+---
+    import XElement from 'astro-xelement'
+
+    const {div:Gallery}=XElement
+---
+
+    <Gallery
+        @do={async ()=>{
+            const gallery = (await import('https://cdn.skypack.dev/gallery')).default
+            gallery(document)
+        }}
+    >
+        <div class="spotlight-group">
+            <a class="spotlight" data-gallery-src="cat1.jpg">
+                <img src="cat1.jpg">
+            </a>
+            <a class="spotlight" data-gallery-src="cat2.jpg">
+                <img src="cat2.jpg">
+            </a>
+            <a class="spotlight" data-gallery-src="cat3.jpg">
+                <img src="cat3.jpg">
+            </a>
+        </div>
+    </Gallery>

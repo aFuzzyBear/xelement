@@ -1,0 +1,19 @@
+---
+import PrefetchLink from '../components/NavBar/PreFetchLink.astro'
+const {content:{name,href,meta}}=Astro.props
+const title = meta.title || meta.meta_title || name.split('-').join(' ')
+const description = meta.description || meta.page_description
+const sanitizer = (str)=> str?.replaceAll('<','&#60;').replaceAll('>','&#62;')
+---
+    <div>
+        <PrefetchLink href={href}>
+            <h3>
+                {sanitizer(title)}
+            </h3>
+            <div>
+                <p>
+                    {sanitizer(description)}
+                </p>
+            </div>
+        </PrefetchLink>
+    </div>

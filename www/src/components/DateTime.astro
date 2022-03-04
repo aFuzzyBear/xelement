@@ -1,0 +1,13 @@
+---
+import XElement from 'astro-xelement'
+
+---
+    <XElement @is="span"
+        @do={async ()=>{
+                let sum = await import('/src/scripts/demo.js')
+                console.log(sum.default(10)(9))
+            }}
+
+    >
+        Hello
+    </XElement>

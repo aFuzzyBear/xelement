@@ -1,0 +1,54 @@
+---
+  import ThemeToggle from './ThemeToggle.astro'
+  import {Icon} from 'astro-icon'
+---
+<header class="navbar navbar_header sticky-head">
+    <div class="navbar_logo">
+        <Icon name="astro-ui"/>
+    </div>
+    <div class="navbar_feature">
+        <span title="Visit Astro.build">Astro</span><span>-</span><span>UI</span><span>:</span><span>&#60;</span><span>XElement</span><span>&#47;</span><span>&#62;</span>
+    </div>
+    <div class="navbar_right">
+        <div class="navbar_themeToggle"><ThemeToggle/></div>
+        <div class="navbar_search">
+        </div>
+    </div>
+</header>
+<style lang="scss">
+    [astro-icon]{
+        @apply  fill-current;
+    }
+    .navbar{
+        @apply flex flex-row flex-wrap content-center justify-between items-center;
+        &_header{
+            @apply p-4 pb-4 h-[25%];
+        };
+        &_logo{
+            @apply pl-4 w-[clamp(2rem,5rem,5rem)] transition-all;
+        };
+        &_feature{
+            @apply flex flex-row sm:text-xl lg:text-6xl text-center overflow-hidden;
+            font-family: 'ArcaneNine';
+            line-height: 2em;
+            letter-spacing: 4px;            
+            > span{
+                &:hover{
+                    @apply  h-fit text-[color:var(--tailwind-bg-pre)] transition-all;
+                    transform: translateY(-3%);    
+                }
+                /* &[title]:hover::after{
+                    content:attr(title);
+                    position: a
+                } */
+            }
+            
+        };
+        &_right{
+            @apply flex flex-row items-center
+        }
+        &_themeToggle{
+            @apply w-fit h-fit items-baseline
+        };
+    }
+</style>

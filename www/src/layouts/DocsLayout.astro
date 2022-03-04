@@ -1,0 +1,40 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import LeftSideBar from './components/LeftSideBar.astro'
+import Article from '../components/Article.astro'
+import RightSideBar from './components/RightSideBar.astro'
+
+const {
+    content:{menu, directory,
+        data:{ 
+            page_title,
+            page_description,
+            astro:{
+                headers,html
+            }
+        }
+    }
+}=Astro.props
+
+---
+<BaseLayout 
+    PageMeta={{page_title,page_description}}
+>
+    <main class="container">
+        <div class="leftsidebar">
+            <LeftSideBar menu={menu} dir={directory}/>
+        </div>
+        <Article class="main" >
+            {html}
+        </Article>
+        <div class="rightbar">
+            <RightSideBar headers={headers}/>
+        </div>
+    </main>  
+    <footer class="footer">
+    </footer>
+</BaseLayout>
+
+<style lang="scss">
+    @import "src/styles/docsLayout.scss";
+</style>

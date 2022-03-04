@@ -1,0 +1,32 @@
+---
+import XElement from 'astro-xelement'
+const {...attrs} = Astro.props
+const {Article} = XElement
+const obeservations = (element)=>{
+    const headings = [...element.querySelectorAll('h1, h2, h3, h4, h5, h6')]
+    function link(heading){
+        return `<a aria-hidden="true" tabindex="-1" href="#${heading.id}"><span class="sr-only">This is the heading anchor for the following "${heading.textContent}" content</span><span class="heading__icon heading__icon__link">#</span></a>`
+    }
+    headings.forEach(heading=>{
+        heading.insertAdjacentHTML('afterBegin',link(heading))
+    })
+    const observer = new IntersectionObserver(entries=>{
+        entries.forEach(entry=>{
+            const link = element.querySelector(`[href*="#${entry.target.getAttribute('id')}"]`)
+            if(link){
+               
+                if(entry.intersectionRatio > 0){
+                    const url = new window.URL(`${window.location.pathname}${link.hash}`,window.location)
+                    window.history.replaceState({},'',url)
+                }
+            }
+        },{root: document.getElementById('.js-documentation'),rootMargin: '0% 0% -80% 0%',threshold:[0]})
+    })
+    headings.forEach(heading=>observer.observe(heading))
+}
+---
+<Article {...attrs}
+    @do={obeservations}
+>
+    <slot/>
+</Article>

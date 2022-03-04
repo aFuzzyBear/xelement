@@ -1,0 +1,61 @@
+---
+import XElement from 'astro-xelement'
+const {headers}=Astro.props
+const {div:TOC} = XElement
+
+const processChange =()=>{
+    function debounce(func, timeout = 150){
+        let timer;
+        return (...args) => {
+            clearTimeout(timer);
+            timer = setTimeout(() => { func.apply(this, args); }, timeout);
+        };
+    }
+    const links = this.querySelectorAll('a')
+    window.addEventListener('scroll',debounce(()=>{     
+        links.forEach(link=>{
+            let tapOfTheWindy = window.scrollY;
+            let header = document.querySelector(link.hash);
+            link.classList.remove("toc-active");
+            if (
+                  header.offsetTop <= tapOfTheWindy &&
+                  header.offsetTop + header.offsetHeight <= tapOfTheWindy
+            )   {
+                link.classList.add("toc-active");
+            }
+        })
+    }))
+    
+}
+
+---
+    <TOC class="toc"
+        @do={processChange}>
+        <h2 class="heading">On this page</h2>
+			<ul class="toc-nav">
+				{headers
+					.filter(({ depth }) => depth < 4)
+					.map((header) => (
+                        <li>
+                            <a href={`#${header.slug}`}>
+                                {header.text.replace('<','&#60').replace('>','&#62').split(':').slice(0,(header.text.split(':').length > 2 ? 2 : 1)).join(' : ')}
+                            </a>
+                        </li>
+					))}
+			</ul>
+    </TOC>
+    <style lang="scss">
+        .toc{
+            position:sticky;
+            top:5rem;
+            right:0;
+            
+            &-nav{
+            }
+            
+        }
+        .toc-active{
+            color:var(--tailwind-links-text);
+        }
+    
+    </style>

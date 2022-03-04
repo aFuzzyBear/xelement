@@ -1,0 +1,23 @@
+---
+//  import Sidebar from '../../components/sidebar/Sidebar.astro'
+const {menu,dir,...attrs}=Astro.props
+
+---
+<aside class="leftbar  sticky-leftbar">
+    <div class="sidebar__feature">
+        <h3>
+            <a href="/docs/induction/overview">Induction</a>
+        </h3>
+        <h3>
+            <a href="/docs/api/overview">API</a>
+        </h3>
+        <h3>
+            <a href="/docs/blog/overview">Blog</a>
+        </h3>
+        <h3>
+            <a href="/docs/guides/myfirstcomponents">Guides</a>
+        </h3>
+        <h3>~~~</h3>
+    </div>
+    <!-- <Sidebar menu={menu} directory={dir}/> -->
+</aside>

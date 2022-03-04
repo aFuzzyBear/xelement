@@ -1,0 +1,44 @@
+---
+import XElement from 'astro-xelement'
+
+const fadeIn = [
+    { 
+        transform: 'translateY(50px)',
+        opacity: 0
+    },
+    {
+        transform: 'translateY(0)',
+        opacity: 1
+    }
+];
+
+const fadeOut = [
+    {
+        opacity: 1
+    },
+    {
+        opacity: 0
+    }
+];
+
+const animationTiming = {
+    duration: 1000,
+    easing: 'cubic-bezier(0.390, 0.575, 0.565, 1.000)',
+    fill: 'both'
+};
+---
+
+<XElement @is="h1"
+  class="text-center text-4xl uppercase font-bold"
+  @props={[
+    {fadeOut},
+    {timing:animationTiming}
+  ]}
+  
+  @visible={(event)=> {
+      console.log(event)
+      event.target.animate(prop_0,prop_1.animationTiming)
+  }}
+>
+<slot/>
+</XElement>

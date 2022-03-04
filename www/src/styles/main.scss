@@ -1,0 +1,143 @@
+@use './colors.scss';
+@use './prisim.scss';
+
+@font-face {
+    font-family: 'ArcaneNine';
+    src: url('/fonts/ArcaneNine.ttf');
+}
+/**
+    ***FOUC Hack***
+
+    To prevent FOUC on the page between transitions
+    Have CSS turn off the HTML page in effect,
+    Turn it back on as the last thing it does before closing the door
+*/
+html,body{opacity: 0;visibility: hidden}
+
+/**
+    Tailwind Directives
+*/
+@tailwind base;
+@layer base{
+    *,::before,::after{
+        // border: 1px dashed rebeccapurple;
+        margin: 0;
+        padding:0;
+        box-sizing: border-box;
+        /* overflow-x: hidden; */
+        overflow-wrap: break-word;
+        scroll-behavior:smooth;
+        scroll-margin-top:25%;
+    }
+
+    html{
+        @apply bg-[color:var(--theme-bg-color)] transition-colors ;
+    }
+    body{
+        @apply flex flex-col flex-wrap content-start justify-center align-middle
+    }
+    //Headings
+    h1{
+        @apply text-3xl;
+    }
+    h2{
+        @apply text-2xl;
+    }
+    h3{
+        @apply text-xl;
+    }
+    h1,h2,h3,h4,h5,h6 {
+        font-family:'ArcaneNine';
+        line-height:1.5em;
+        > code{
+            @apply bg-transparent;
+        }
+    }
+    p{
+        @apply text-lg
+    }
+    article{
+        @apply prose;
+        a{
+            text-decoration:green underline;
+        }
+    }
+    code{
+        @apply bg-[color:var(--color-bg-code)];
+    }
+    pre{
+    }
+    .clay{
+        backdrop-filter: blur(5px);
+        
+        border-radius: 26px;
+        
+        box-shadow: 35px 35px 68px 0px hsl(33, 44%, 76%) , inset -8px -8px 16px 0px hsl(33, 44%, 76%) , inset 0px 11px 28px 0px rgb(255, 255, 255);
+        
+    }
+}
+    
+
+@layer components{
+ .prose{
+     >a{
+         text-decoration:green underline;
+     }
+ }
+}
+@tailwind components;
+@layer components{
+    
+}
+
+
+@tailwind utilities;
+@layer utilities{
+    
+}
+
+
+@tailwind variants;
+@layer variants{
+
+}
+
+
+
+
+/**
+    ***FlexBox Hacks***
+*/
+.flex{
+    &-row {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: 100%;
+      }
+      
+    &-column {
+        display: flex;
+        flex-direction: column;
+        flex-basis: 100%;
+        flex: 1;
+      }
+}
+.break{
+    &_row{
+        flex-basis: 100%;
+        height: 0;
+    }
+    &_column{
+        flex-basis: 100%;
+        width: 0;
+    }
+}
+
+/**
+    ***FOUC Hack***
+    Telling CSS to turn the lights back on
+    Before it closes the proverbial door on it's self
+*/
+
+html,body{@apply transition-opacity visible opacity-100}

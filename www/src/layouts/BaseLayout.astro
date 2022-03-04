@@ -1,0 +1,11 @@
+---
+import Base from './components/Base.astro'    
+const{PageStyles,PageMeta}=Astro.props
+---
+<Base meta={{PageStyles,PageMeta}}>
+    
+    <slot slot="body"/>
+</Base>
+<style lang="scss">
+    @import 'src/styles/docsLayout.scss';
+</style>

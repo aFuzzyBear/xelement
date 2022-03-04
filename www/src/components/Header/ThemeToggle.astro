@@ -1,0 +1,88 @@
+---
+import XElement from 'astro-xelement'
+import { Icon } from 'astro-icon'
+
+const {div:ToggleContainer,button:ToggleButton}=XElement
+
+const setTheme=(theme)=>{
+    const html = document.documentElement
+    html.classList.remove(...html.classList)
+    localStorage.setItem('color-theme',theme)
+    html.classList.add(theme)
+}
+const toggleTheme=(element)=>{
+    const buttons = element.querySelectorAll('button')
+    for(let button of buttons){
+        button.addEventListener('click',(e)=>{
+            const self = e.currentTarget
+            const theme = self.dataset.theme
+            for(let button of buttons){
+                if(button !== self){
+                    button.classList.remove('js-active')
+                    self.ariaLabel=`Toggle Theme ${theme}`
+                }
+            }
+            self.classList.add('js-active')
+            self.ariaLabel=`Current Theme ${theme}`
+            setTheme(theme)
+        })
+    }
+}
+---
+
+<ToggleContainer 
+    define:vars={{setTheme:setTheme}}
+    @do={toggleTheme} >
+        <ToggleButton  data-theme="light" aria-label="Toggle Theme">
+            <Icon name="ph:sun-fill"/>
+        </ToggleButton>
+        <ToggleButton  data-theme="warm" aria-label="Toggle Theme">
+            <Icon name="ph:coffee-duotone"/>
+        </ToggleButton>
+        <ToggleButton  data-theme="dark" aria-label="Toggle Theme">
+            <Icon name="ph:moon-stars-fill"/>
+        </ToggleButton>
+ 
+</ToggleContainer>
+
+<style lang="scss">
+    div{
+        @apply p-3 w-fit;
+    }
+    button{
+        @apply w-8 transition-all p-[0.15rem] border-current border-2 opacity-90 mx-[0.1rem];
+        &:first-child{
+            @apply rounded-l-lg;
+        }
+        &:last-child{
+            @apply rounded-r-lg;
+        }
+        &:hover{
+           @apply bg-[color:var(--tailwind-bg-code)] bg-opacity-30;
+        }
+       
+    }
+    [astro-icon]{
+        @apply fill-current transition-colors;
+    }
+    .js-active{
+        @apply bg-[color:var(--tailwind-bg-code)] bg-opacity-30 scale-110 shadow-md shadow-current;
+    }
+    
+</style>
+<script hoist>
+// FART(Flash of inAccurate coloR Theme) PROTECTION
+  if (
+    localStorage.getItem('color-theme') === 'dark' ||
+    (!('color-theme' in localStorage) &&
+      window.matchMedia('(prefers-color-scheme: dark)').matches)
+  ) {
+    document.documentElement.classList.add('dark');
+  } else if(localStorage.getItem('color-theme') === 'warm'){
+      document.documentElement.classList.add('warm');
+  }
+  else {
+    document.documentElement.classList.remove('dark');
+    document.documentElement.classList.remove('warm');
+  }
+</script>

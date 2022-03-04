@@ -1,0 +1,42 @@
+---
+import ListBox from '../../components/ListBox.astro'
+// Magic Recursive Call to the Same Component, 
+Astro.self = $$Component
+let filter = [...Astro.props.items.filter(item=>item.name ==='overview'),...Astro.props.items.filter(item=>item.name !=='overview').sort((a, b)=> a.name < b.name)]
+---
+<h2 class="grid-title">{Astro.props.dir}</h2>
+<ul class="grid-table">
+  {
+    filter.map(
+      item => (
+        <li class="grid-item">
+          {
+            item.href
+              ? <ListBox class="grid-box" content={item}/>
+            : <h2>{Astro.props.dir}/{item.name}</h2>
+          }
+        </li>
+      )
+    )
+  }
+</ul>
+{
+filter.map(item=>(
+  item.items && (
+    <Astro.self items={item.items} />
+  )
+))
+}
+<style lang="scss" global>
+  .grid{
+    &-table{
+      @apply flex flex-col
+    }
+    &-item{
+      @apply w-fit
+    }
+    &-box{
+
+    }
+  }
+</style>

@@ -1,0 +1,44 @@
+---
+import PrefetchLink from '../NavBar/PreFetchLink.astro'
+// Magic Recursive Call to the Same Component, 
+Astro.self = $$Component
+const {items} = Astro.props
+let filter = [...items.filter(item=>item.name ==='overview'),...items.filter(item=>item.name !=='overview').sort((a, b)=> a.name < b.name)]
+---
+<ul class="sidebar__parent">
+  <h2>{Astro.props.directory}</h2>
+  {
+    filter.map(
+      item => (
+        <li class="sidebar_items">
+          {
+            item.href
+              ? <PrefetchLink class={`sidebar_link ${Astro.request.url.pathname.includes(item.href) ? 'sidebar_link_active' : ''}`} href={item.href}>{item.name}</PrefetchLink>
+            : <h2>{item.name}</h2>
+          }
+          {
+            item.items && (
+              <Astro.self items={item.items} />
+            )
+          }
+        </li>
+      )
+    )
+  }
+</ul>
+<style lang="scss" global>
+.sidebar{
+    &_items{
+    text-transform: capitalize;
+    }
+    &_link{
+        margin-inline-start: 1rem;
+        &:hover{
+          font-weight: 900;
+        }
+        &_active{
+          font-weight: 900;
+        }
+      }
+  }
+</style>

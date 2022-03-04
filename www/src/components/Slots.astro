@@ -1,0 +1,8 @@
+---
+    const {intro:introduction,default:normal,outro:stageExit} = Astro.slots
+---
+    <div class="test">
+            <slot name="intro"/>
+            <slot/>
+            <slot name="Outro"/>
+    </div>

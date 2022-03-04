@@ -1,0 +1,17 @@
+---
+    import XElement from 'astro-xelement'
+
+    const{div:StorkSearchBox}=XElement
+    // import 'https://files.stork-search.net/basic.css'
+---
+
+<StorkSearchBox
+    @do={()=>{
+        stork.initialize()
+        stork.downloadIndex("xelement", "/xelement.st")
+        stork.attach('xelement')
+    }}>
+    <input data-stork="xelement"/>
+</StorkSearchBox>
+    <div data-stork="xelement-output"></div>
+<script src="https://files.stork-search.net/stork.js" hoist></script>

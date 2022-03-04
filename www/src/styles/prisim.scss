@@ -1,0 +1,168 @@
+@use './colors.scss';
+/**
+ * prism.js base stylesheet for Astro, XElement, JavaScript, CoffeeScript, CSS and HTML
+ * Based on https://github.com/chriskempson/tomorrow-theme
+ * @author aFuzzyBear
+ * @author Rose Pritchard - original author of Tomorrow Prism Theme
+ */
+
+ code[class*="language-"],
+ pre[class*="language-"] {
+     color: var(--prism-base);
+     background: none;
+     font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+     font-size: 1em;
+     text-align: left;
+     white-space: pre;
+     word-spacing: normal;
+     word-break: normal;
+     word-wrap: normal;
+     line-height: 1.5;
+ 
+     -moz-tab-size: 4;
+     -o-tab-size: 4;
+     tab-size: 4;
+ 
+     -webkit-hyphens: none;
+     -moz-hyphens: none;
+     -ms-hyphens: none;
+     hyphens: none;
+ 
+ }
+ 
+ /* Code blocks */
+ pre[class*="language-"] {
+     padding: 1em;
+     margin: .5em 0;
+     overflow: auto;
+ }
+ 
+ :not(pre) > code[class*="language-"],
+ pre[class*="language-"] {
+     background: var(--prism-bg);
+ }
+ 
+ /* Inline code */
+ :not(pre) > code[class*="language-"] {
+     padding: .1em;
+     border-radius: .3em;
+     white-space: normal;
+ }
+ //Syntax Highlighting
+ .token.comment {
+    color:var(--prism-comment);
+ }
+ .token.block-comment {
+     color:var(--prism-block-comment);
+ }
+ .token.prolog {
+    color:var(--prism-prolog);
+}
+ .token.doctype {
+    color:var(--prism-doctype);
+}
+ .token.cdata {
+    color:var(--prism-cdata);
+}
+ 
+ .token.punctuation {
+    color:var(--prism-);
+}
+ 
+ .token.tag{
+    color:var(--prism-tag);
+}
+ .token.attr-name{
+    color:var(--prism-attr-name);
+}
+ .token.namespace{
+    color:var(--prism-namespace);
+}
+ .token.deleted {
+    color:var(--prism-deleted);
+}
+ 
+ .token.function-name {
+    color:var(--prism-function-name);
+} 
+ .token.boolean {
+    color:var(--prism-boolean);
+}
+ .token.number {
+    color:var(--prism-number);
+}
+ .token.function {
+    color:var(--prism-function);
+}
+ .token.property {
+    color:var(--prism-property);
+}
+ .token.class-name {
+    color:var(--prism-class-name);
+}
+ .token.constant {
+    color:var(--prism-constant);
+}
+ .token.symbol {
+    color:var(--prism-symbol);
+}
+ 
+ .token.selector {
+    color:var(--prism-selector);
+}
+ .token.important {
+    color:var(--prism-important);
+}
+ .token.atrule {
+    color:var(--prism-atrule);
+}
+ .token.keyword {
+    color:var(--prism-keywork);
+}
+ .token.builtin {
+    color:var(--prism-builtin);
+}
+ 
+ .token.string {
+    color:var(--prism-string);
+}
+ .token.char {
+    color:var(--prism-char);
+}
+ .token.attr-value {
+    color:var(--prism-attr-value);
+}
+ .token.regex {
+    color:var(--prism-regex);
+}
+ .token.variable {
+    color:var(--prism-variable);
+}
+ 
+ .token.operator {
+    color:var(--prism-operator);
+}
+ .token.entity {
+    color:var(--prism-entity);
+}
+ .token.url {
+    color:var(--prism-url);
+}
+ 
+ .token.important,
+ .token.bold {
+     color:var(--prism-important);
+     font-weight: bold;
+ }
+ .token.italic {
+     font-style: italic;
+ }
+ 
+ .token.entity {
+     cursor: help;
+ }
+ 
+ .token.inserted {
+     color:var(--prism-inserted);
+ }
+ 
