@@ -1,5 +1,5 @@
 ---
-//  import Sidebar from '../../components/sidebar/Sidebar.astro'
+ import Sidebar from '../../components/sidebar/Sidebar.astro'
 const {menu,dir,...attrs}=Astro.props
 
 ---
@@ -19,5 +19,5 @@ const {menu,dir,...attrs}=Astro.props
         </h3>
         <h3>~~~</h3>
     </div>
-    <!-- <Sidebar menu={menu} directory={dir}/> -->
+    <Sidebar menu={menu} directory={dir}/>
 </aside>
