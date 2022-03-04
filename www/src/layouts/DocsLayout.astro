@@ -24,9 +24,7 @@ const {
         <div class="leftsidebar">
             <LeftSideBar menu={menu} dir={directory}/>
         </div>
-        <Article class="main" >
-            {html}
-        </Article>
+        <Article class="main" set:html={html}/>
         <div class="rightbar">
             <RightSideBar headers={headers}/>
         </div>
