@@ -1,0 +1,15 @@
+---
+import XElement from 'astro-xelement'
+
+const {H1} = XElement
+---
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width" />
+		<title>Astro</title>
+	</head>
+	<body>
+		<H1 @do={()=>console.log('boo')}>hello</H1>
+	</body>
+</html>
