@@ -1,0 +1,9 @@
+node_modules/
+**/dist
+**/node_modules/
+
+.env
+.local.env
+.prod.env
+
+**.lock
