@@ -1,0 +1,260 @@
+---
+import { Fragment } from 'astro/internal'
+import { createRequire } from 'node:module'
+
+const require = createRequire(import.meta.url)
+const { transformWithEsbuild } = require('vite')
+
+
+
+const {
+	'@is': tag = null,
+	...attrs
+} = Astro.props
+
+/** Generates the HTML Tag for the Element */
+const XElement: string = tag == null || /^(#text|fragment)$/i.test(tag) ? Fragment : tag
+
+/** Formats the given value so that it can be placed into an attribute. */
+const toAttributeString = (value: any) => String(value).replace(/\b__vite_ssr_dynamic_import__\b/, 'import').replace(/\b__vite_ssr_import_0__\.default\b/, 'fetch')
+
+/** Error Handling */
+const handleError = (error)=> {
+		let errorMsg = `🐱‍🚀\t Dont Panic!\t👍\nThere seem's to be an error with your most recent XElement Component:\n "<${XElement}>", it is producing the following error:\n${error}`
+		console.error(errorMsg)
+		throw new Error(errorMsg)
+	}
+
+/** Listeners to attach onto the event. */
+let listenerString: string = ''
+
+/** Event fired once before the document is displayed, deferred using `type="module". */
+let listenerOfOnce: string = ''
+
+let defineVarsString: string = ''
+
+/** Returns the null-safe type of value. */
+const typeOf = (value: any) => value === null ? 'null' : typeof value
+
+/** Returns the function-safe serialized value. */
+const serialize = (value: any) => {
+		switch (typeOf(value)){
+		case 'function':
+			return String(value)
+
+		case 'object':
+			return (
+				Array.isArray(value)
+					? `[${
+						Object.values(value).map(serialize)
+					}]`
+				: value instanceof RegExp
+					? String(value)
+				: `{${
+					Object.keys(value).map(
+						name => `${JSON.stringify(name)}:${serialize(value[name])}`
+					)
+				}}`
+			)
+
+		default:
+			return JSON.stringify(value)
+	}
+}
+
+/** Parse the Attributes */
+for (const name in attrs) {
+	if (name.startsWith('@')) {
+		const data = attrs[name]
+		if (typeOf(data) === 'function') {
+			
+				delete attrs[name]
+				const safeData = toAttributeString(data)
+				/** Normalized type of the event. */
+				let type = name.slice(1)
+
+				/** Options extracted from the type. */
+				let opts: { [key: string]: boolean } = {}
+
+				/** Values extracted from the type to populate Options. */
+				let read: RegExpExecArray
+
+				while ((read = /:\w+$/.exec(type))) {
+					opts[type.slice(read.index + 1)] = true
+
+					type = type.slice(0, read.index)
+				}
+				//All weekend long, I was wondering how would Jonathan write this, and this is the closest I can come to experincing magic without being a wizard, 
+				function userOptions():string{
+					let hasOptions = (/\([^,)]+,[^,)]+,([^)]+)/).exec(safeData) 
+					return	hasOptions ? hasOptions[1].split('=')[1] : undefined
+				}
+				/** Apply the JS payload delivery*/
+				switch (type) {
+					case 'do':
+						listenerOfOnce = `(${safeData})($,$$);`
+						break
+					case 'resize':
+						listenerString += `new ResizeObserver((e,o)=>${
+							opts.once
+								? `!o.disconnect()&&`
+								: ``
+						}(${safeData})(e[0],$$)).observe($);`
+						break
+
+					case 'observe':
+						listenerString += `new MutationObserver((e,o)=>${
+							opts.once
+								? `!o.disconnect()&&`
+								: ``
+						}(${safeData})(e[0],$$)).observe($,${userOptions() === undefined ? '{attributes:true,childList:true,subtree:true}' : userOptions()});`
+						break
+
+					case 'visible':
+						listenerString += `new IntersectionObserver((e,o)=>e[0].isIntersecting${
+							opts.once
+								? `&&!o.disconnect()`
+								: ``
+						}&&(${safeData})(e[0],$$),${userOptions()}).observe($);`
+						break
+
+					default:
+						// Add Event Listeners
+						listenerString += `$.${
+							opts.remove 
+							? `removeEventListener` 
+							: `addEventListener`
+						}(${
+							JSON.stringify(type)
+						},${
+							`e=>{${
+								opts.prevent 
+								? `e.preventDefault();` 
+								: ''
+							}(${
+								toAttributeString(data)
+							})(e,$$)}`
+						},${
+							opts.once
+							? '{once:true}'
+							: userOptions() === undefined
+							? '{useCapture:false}'
+							: userOptions()
+						});`
+						break
+			}
+		}
+		if (name.includes('@animate') && typeOf(data) === 'object') {
+			/** Applying Web Animate API to the Element */
+			const [ keyFrames, options ] = [
+				attrs['@animate'],
+				attrs['@timings']
+			]
+				/** Handling timings Error */
+				if(typeOf(options) !== 'object'){
+							handleError(`🎨\tType Error: @timings ❗\nMia Culpa Michelangelo, it appears you tried to pass in:\nValue: ${data}\ntypeof: ${typeOf(data)}\nTo fix, wrap this in the following manner:\n\`@timings{\/\/This only accepts a single object,\n\t{"cssProperty":value}\n}\``)
+				}
+
+			delete attrs['@animate']
+			delete attrs['@timings']
+
+			listenerString += `$.animate(${
+				JSON.stringify(keyFrames)
+			},${
+				JSON.stringify({ ...options })
+			});`
+		}else if(name.includes('@animate') && typeOf(data) !== 'object'){
+			/** Handling Animate Error */
+			handleError(`🎨\tType Error: @animate❗\nSorry Picasso, it appears you tried to pass in:\nValue: ${data}\ntypeof: ${typeOf(data)}\nTo fix, wrap this in the following manner:\n\`@animate{\/\/It's a record of objects,\n\t{"cssProperty":value} ,\n\t{"cssProperty":value}\n}\``)
+		}else{
+			if(name.includes('@animate') || name.includes('@timings')){ return}
+			if(typeOf(data) !== 'function'){
+				handleError(`\t🤖 Type Error: ${name}\nHuh, it looks you  tried to pass in:\nValue: ${JSON.stringify(data)}\ntypeof: ${typeOf(data)}\nTo fix, wrap this in the following manner:\n${name}={ () => {...}}\n${name}={async() => {...}}\n${name}={ function(){...}}\n${name}={ async function(){...}}`)
+			}
+		}
+	}
+
+	if (name.includes('define:vars')){
+		const data = attrs['define:vars']
+		delete attrs['define:vars']
+			if (typeOf(data) === 'object'){
+				defineVarsString = `let ${
+					Object.entries(data).map(
+						([ name, value ]) => `${name.replace(/[^\w]/g, '')}=${
+							serialize(value)
+						}`
+					).join(',')
+				};`
+			}else{
+				/** Handle define:vars Error */
+				handleError(`🙈\t Type Error: "define:vars"\t❗\nSorry but it would appear that you are trying to pass in:\nValue: ${data}\ntypeof: ${typeOf(data)}\nTo fix, wrap this in the following manner:\n\`define:vars={\n\t{\n\t\t["referenceName":${typeOf(data)}]:${data}\n\t}\n}\``)
+			}
+		
+	}
+}
+
+			
+/** Transforms the JS/TS input using ESBuild */
+const transformer = async (code: string): Promise<string> => await transformWithEsbuild(code, 'xelement.ts', { minify: true }).then(result => result.code)
+
+/** Create a hashmap to store the transformed code */
+const hash = Object.create(null)
+
+/** Return transformed code, remembering previously transformed code. */
+const memo = async (code: string) => {
+	// if the hashmap has the transformed code for this code, return it
+	if (code in hash) return hash[code]
+
+	// otherwise, the transform code and assign it to the hashmap
+	hash[code] = await transformer(code)
+
+	// and return the transformed code
+	return hash[code]
+}
+
+const onLoadString: string = (
+	listenerString || listenerOfOnce
+		? await memo(
+			`(async function($$,$){$=this;$$=(await import($$.src)).default;${
+				defineVarsString ?? ''
+			}${
+				listenerOfOnce ?? ''
+			}${
+				listenerString ?? ''
+			}}).call(this.previousSibling,this.remove()||this)`
+		)
+	: null
+)
+
+/** Matching ShadowRoot attribute. */
+let shadowRoot = Object.keys(attrs).find(name => /^shadowroot$/i.test(name))
+
+if (shadowRoot) {
+	/** Formatted ShadowRoot attribute value */
+	let value = attrs[shadowRoot]
+
+	// format the ShadowRoot attribute value
+	value = typeof value === 'string' ? value : value ? 'open' : 'closed'
+
+	// remove it from the attributes sent to the main element
+	delete attrs[shadowRoot]
+
+	// update the shadowRoot attribute value
+	shadowRoot = value
+}
+const AstroFragment = Fragment as unknown as string
+const HtmlTemplate = 'template'
+---
+<XElement {...attrs}>{
+	shadowRoot
+		? <HtmlTemplate {shadowRoot}><slot /></HtmlTemplate>
+	: XElement === AstroFragment
+		? <slot>&#8203;</slot>
+	: <slot />
+}</XElement>{
+	onLoadString
+		? <script type="module" src="data:text/javascript,export default {}" onload={
+			onLoadString
+		}/>
+	: null
+}
