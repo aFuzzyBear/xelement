@@ -1,0 +1,69 @@
+---
+
+export async function getStaticPaths(){
+const docs = Astro.fetchContent('../../../docs/**/*.md').filter(({file})=>!(file.pathname.toLowerCase().includes('readme')))
+const documents = docs.map((page)=>{
+	return ({
+		params:{
+			doc: page.file.pathname.slice(0,-3).replace('/','')
+		},
+		props: {
+			slug: page.file.pathname.slice(0,-3),
+			fileName: page.file.pathname.slice(0,-3).split('/').at(-1),
+			directory: page.file.pathname.slice(0,-3).split('/')[2],
+			data:{...page}
+           },
+	})
+})
+const createSideBarMenu = (dataSet)=>{
+    const data = [...dataSet]
+	for(const doc of data){
+		const hash = Object.create(null)
+		const root = {name:'root'}
+		let item = root
+		const recusiveList = doc.props.slug.split('/')
+		for(const[index,name] of Object.entries(recusiveList)){
+			const {slug,fileName,directory,data} = doc.props
+			if(!item.items){
+				item.items = []
+			}
+			let isItem = index === String(recusiveList.length - 1)
+			if (isItem) {
+				item.items.push({ 
+					name, 
+					slug,
+					directory,
+					meta:"Sort out the Frontmatter"
+					})
+			} else {
+				item.items = item.items || []
+
+				item = (
+				hash[name] = (
+					hash[name] ||
+					item.items[item.items.push({ name, items: [] }) - 1]
+				)
+				)
+			}
+		}
+		doc.props.menu = root.items
+	}
+    return data
+    }
+    return createSideBarMenu(documents)
+}
+const {doc}=Astro.request.params
+const {data:{astro:{html}}} = Astro.props
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body set:html={html}>
+    
+</body>
+</html>

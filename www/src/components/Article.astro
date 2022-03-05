@@ -1,6 +1,6 @@
 ---
 import XElement from 'astro-xelement'
-import {Markdown} from 'astro/components'
+
 const {source,...attrs} = Astro.props
 const {Article} = XElement
 const obeservations = (element)=>{
@@ -29,5 +29,9 @@ const obeservations = (element)=>{
 <Article {...attrs}
     @do={obeservations}
 >
-    <Markdown content={source}/>
+    <slot>
+        <p>
+            There was a problem loading the 'Slot' data
+        </p>
+    </slot>
 </Article>

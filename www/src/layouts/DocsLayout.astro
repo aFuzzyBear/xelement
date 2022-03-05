@@ -1,4 +1,5 @@
 ---
+import {Markdown} from 'astro/components'
 import BaseLayout from '../layouts/BaseLayout.astro'
 import LeftSideBar from './components/LeftSideBar.astro'
 import Article from '../components/Article.astro'
@@ -23,7 +24,9 @@ const {
         <div class="leftsidebar">
             <LeftSideBar menu={menu} dir={directory}/>
         </div>
-        <Article class="main" source={source}/>
+        <Article class="main">
+            <Markdown content={source}/>
+        </Article>
         <div class="rightbar">
             <RightSideBar headers={headers}/>
         </div>
