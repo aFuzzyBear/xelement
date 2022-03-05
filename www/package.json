@@ -10,7 +10,7 @@
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.2",
-    "astro": "^0.23.5",
+    "astro": "^0.23.3",
     "astro-fonts": "^0.2.5",
     "astro-icon": "^0.6.0",
     "astro-seo": "^0.4.2",
