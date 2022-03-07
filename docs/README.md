@@ -10,27 +10,27 @@ Here you can view the `raw` resources and content that powers our documentation 
 
 The Documentation for `astro-xelement` is set out in the following manner:
 
-## [`induction/`](/induction/)
+## [`induction/`](https://github.com/aFuzzyBear/xelement/tree/master/docs/induction)
 
 Every project has its own unique way of introducing new developers to their creations. For XElement it is no different. We wish for you to be suitably brought up to speed with our product.
 
 Our short induction guides to XElement is enough to get you up and going with alot of the core concepts of XElement and how to go about utilizing the power that it provides fellow Astronauts when authoring in Astro.
 
-## [`api/`](/api/)
+## [`api/`](https://github.com/aFuzzyBear/xelement/tree/master/docs/api)
 
 The `api/` directory is XElement's main reference repository. Here you will find all the technical writings, information and more detailed code explanations for each of XElements methods and behaviors.
 
 If you have any issues or require additional support when utilizing XElement, it is here within the `api/` directory you should be able find your answers.
 
-## [`guides/`](/guides)
+## [`guides/`](https://github.com/aFuzzyBear/xelement/tree/master/docs/guides)
 
-The [`guides/`](/guides/) directory is where we wish to provide you with supportive literature that would be able to help you get quickly up to speed with using XElement.
+The [`guides/`](https://github.com/aFuzzyBear/xelement/tree/master/docs/guides) directory is where we wish to provide you with supportive literature that would be able to help you get quickly up to speed with using XElement.
 
 Creating components in Astro can be either daunting or exceedingly easy, and that depends on many factors. Our guides would help you expand your ability to write good Astro.
 
 XElement aside, the methods we used can be used outwith XElement when it comes to writing Astro components and our examples would be in JavaScript, utilizing only standard and conventional methods that you will be able to find practiced elsewhere.
 
-## [`blog`](/blog/)
+## [`blog`](https://github.com/aFuzzyBear/xelement/tree/master/docs/blog)
 
 Where the informal and the verbose is given space. Technical documentation is in respects aimed at providing a tasteless experience when you are consuming them. We feel that there is also space for more informal, less beige style of writing that could help explain XElement to others in a different light.
 
