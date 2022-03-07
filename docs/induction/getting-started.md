@@ -52,7 +52,7 @@ Let's make our `<HelloWorld>` component fade in, using the **Web Animation API**
 
 ```astro
 ---
-import XElement from 'astro-`xelement`'
+import XElement from 'astro-xelement'
 
 const {h1:HelloWorld} = XElement
 
@@ -104,7 +104,7 @@ We can define all of these elements from XElement at once:
 
 ```astro
 ---
-import XElement from 'astro-`xelement`'
+import XElement from 'astro-xelement'
 const {..., button:Button, span:Display, Counter} = XElement
 ---
 ```
@@ -117,7 +117,7 @@ Let's see how we can make our XElement `<Counter>` component **do** some stuff: 
 
 ```astro
 ---
-import XElement from 'astro-`xelement`'
+import XElement from 'astro-xelement'
 const {..., button:Button, span:Display, Counter} = XElement
 ---
 <Counter
