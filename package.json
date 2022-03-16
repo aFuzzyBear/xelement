@@ -1,5 +1,5 @@
 {
-  "name": "xelement",
+  "name": "@xelement/root",
   "version": "0.1.0",
   "description": "Home Repo for Astro XElement Framework",
   "main": "index.js",
@@ -8,10 +8,10 @@
   "private": "true",
   "workspaces": [
     "packages/*",
-    "docs/*",
     "www/*"
   ],
   "devDependencies": {
+    "@changesets/cli": "^2.21.1",
     "astro": "^0.23.5",
     "turbo": "^1.1.5"
   }
