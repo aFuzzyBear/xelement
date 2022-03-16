@@ -1,6 +1,6 @@
 {
   "name": "astro-xelement",
-  "version": "3.1.7",
+  "version": "3.2.0",
   "description": "XElement is a powerful Astro Web Component generator. Create your own Astro compliant Web Components using only HTML Elements with additional Client-Side JS/TS interactivity sprinkled into the Element.",
   "keywords": [
     "XElement",
