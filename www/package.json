@@ -10,11 +10,11 @@
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.2",
-    "astro": "^0.23.3",
+    "astro": "latest",
     "astro-fonts": "^0.2.5",
     "astro-icon": "^0.6.0",
     "astro-seo": "^0.4.2",
-    "astro-xelement": "^3.1.6",
+    "astro-xelement": "^3.1.8",
     "autoprefixer": "^10.4.2",
     "linkedom": "^0.14.3",
     "postcss": "^8.4.7",
