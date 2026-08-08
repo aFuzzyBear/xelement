@@ -20,6 +20,7 @@
   "homepage": "https://github.com/aFuzzyBear/xelement",
   "license": "GPU3",
   "type": "module",
+  "sideEffects": false,
   "exports": {
     ".": "./XElement.js"
   },
