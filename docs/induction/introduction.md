@@ -42,7 +42,7 @@ It provides pure *element encapsulation* where each dynamic component is isolate
 
 ## Examples
 
-Visit our ['Getting Started'](Getting_Started.md) guide to take you through making your first set of `XElements`.
+Visit our ['Getting Started'](getting-started.md) guide to take you through making your first set of `XElements`.
 
 ## API reference
 
